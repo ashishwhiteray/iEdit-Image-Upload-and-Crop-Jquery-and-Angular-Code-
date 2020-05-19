@@ -1,0 +1,40 @@
+-----------------------------------------Css------------------------------------------------------
+ <link rel="stylesheet" type="text/css" href="assets/css/iEdit.css" />
+ 
+
+--------------------------------------JS------------------------------------------------------
+ <script type="text/javascript" src="assets/js/iEdit.js"></script> 
+ 
+ 
+
+-------------------------------------HTML----------------------------------------------------
+<div class="pic-box">
+                  <div class="logoImg">
+                    <img src="assets/img/user2.jpg" id="result" >
+                    <input id="logo-file" type="file" >
+                    <label for="logo-file" class="btn btn-large"></label>
+                  </div>
+                </div>
+
+---------------------------------------.ts------------------------------------------------------
+declare var iEdit: any;
+
+ ngOnInit() {
+      $("#logo-file").change(function(e){
+      var img = e.target.files[0];
+      if(!iEdit.open(img, false, function(res){
+        this.profile_image = img
+      $("#result").attr("src", res);
+      })){
+        this.profile_image = 'no'
+        alert("Whoops! That is not an image!");
+      }
+    });
+  }
+  
+  
+  
+  
+  Important Note --->   For Square Cropping... Replace false by true in .open() parameter. --->   eg  .open(img, true, function(res)
+  
+  For more info about iEdit, please visit-->    https://github.com/Linko91/iEdit
